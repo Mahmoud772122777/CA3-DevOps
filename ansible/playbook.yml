@@ -1,0 +1,19 @@
+---
+- name: Configure CA3 DevOps host
+  hosts: local
+  become: true
+  tasks:
+    - name: Install curl
+      ansible.builtin.package:
+        name: curl
+        state: present
+
+    - name: Create devopsuser
+      ansible.builtin.user:
+        name: devopsuser
+        state: present
+
+    - name: Create configuration file
+      ansible.builtin.copy:
+        dest: /tmp/ca3-devops.txt
+        content: "Configured by Ansible"
