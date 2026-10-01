@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ca3-devops
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ca3-devops
+  template:
+    metadata:
+      labels:
+        app: ca3-devops
+    spec:
+      containers:
+        - name: ca3-devops
+          image: ca3-devops
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
